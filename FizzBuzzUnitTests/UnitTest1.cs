@@ -1,3 +1,5 @@
+using FizzBuzz;
+
 namespace FizzBuzzUnitTests
 {
     public class UnitTest1
@@ -11,8 +13,12 @@ namespace FizzBuzzUnitTests
         [InlineData(101, "101")]
         public void TestsWhichReturnTheOriginalNumber(int number, string expectedResult)
         {
-            string result = FizzBuzz.FizzBuzz.GetStringFromNumber(number);
-            Assert.Equal(expectedResult, result);
+            var fizzBuzz = new FizzBuzz.FizzBuzz();
+            fizzBuzz.AddRule(new FizzBuzzRule());
+            fizzBuzz.AddRule(new FizzRule());
+            fizzBuzz.AddRule(new BuzzRule());
+            var thisResult = fizzBuzz.GetStringFromNumber(number);
+            Assert.Equal(expectedResult, thisResult);
         }
 
         [Theory]
@@ -22,8 +28,12 @@ namespace FizzBuzzUnitTests
         [InlineData(99)]
         public void TestsWhichReturnFizz(int number)
         {
-            string result = FizzBuzz.FizzBuzz.GetStringFromNumber(number);
-            Assert.Equal("Fizz", result);
+            var fizzBuzz = new FizzBuzz.FizzBuzz();
+            fizzBuzz.AddRule(new FizzBuzzRule());
+            fizzBuzz.AddRule(new FizzRule());
+            fizzBuzz.AddRule(new BuzzRule());
+            var thisResult = fizzBuzz.GetStringFromNumber(number);
+            Assert.Equal("Fizz", thisResult);
         }
 
         [Theory]
@@ -33,8 +43,12 @@ namespace FizzBuzzUnitTests
         [InlineData(100)]
         public void TestsWhichReturnBuzz(int number)
         {
-            string result = FizzBuzz.FizzBuzz.GetStringFromNumber(number);
-            Assert.Equal("Buzz", result);
+            var fizzBuzz = new FizzBuzz.FizzBuzz();
+            fizzBuzz.AddRule(new FizzBuzzRule());
+            fizzBuzz.AddRule(new FizzRule());
+            fizzBuzz.AddRule(new BuzzRule());
+            var thisResult = fizzBuzz.GetStringFromNumber(number);
+            Assert.Equal("Buzz", thisResult);
         }
         [Theory]
         [InlineData(15)]
@@ -43,8 +57,13 @@ namespace FizzBuzzUnitTests
         [InlineData(90)]
         public void TestsWhichReturnFizzbuzz(int number)
         {
-            string result = FizzBuzz.FizzBuzz.GetStringFromNumber(number);
-            Assert.Equal("Fizzbuzz", result);
+            var fizzBuzz = new FizzBuzz.FizzBuzz();
+            fizzBuzz.AddRule(new FizzBuzzRule());
+            fizzBuzz.AddRule(new FizzRule());
+            fizzBuzz.AddRule(new BuzzRule());
+            var thisResult = fizzBuzz.GetStringFromNumber(number);
+            Assert.Equal("Fizzbuzz", thisResult);
         }
+
     }
 }

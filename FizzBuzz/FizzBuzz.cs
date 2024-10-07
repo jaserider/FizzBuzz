@@ -1,29 +1,69 @@
 ﻿namespace FizzBuzz
 {
+    public interface IRuleInterface
+    {
+        bool MatchesRule(int number);
+        string GetFizzBuzzString();
+    }
+
+    public class FizzRule : IRuleInterface
+    {
+        public bool MatchesRule(int number)
+        {
+            return number % 3 == 0;
+        }
+
+        public string GetFizzBuzzString()
+        {
+            return "Fizz";
+        }
+    }
+
+    public class BuzzRule : IRuleInterface
+    {
+        public bool MatchesRule(int number)
+        {
+            return number % 5 == 0;
+        }
+
+        public string GetFizzBuzzString()
+        {
+            return "Buzz";
+        }
+    }
+
+    public class FizzBuzzRule : IRuleInterface
+    {
+        public bool MatchesRule(int number)
+        {
+            return number % 3 == 0 && number % 5 == 0;
+        }
+
+        public string GetFizzBuzzString()
+        {
+            return "Fizzbuzz";
+        }
+    }
+
     public class FizzBuzz
     {
-        public static string GetStringFromNumber(int number)
+        private List<IRuleInterface> rules = new List<IRuleInterface>();
+
+        public void AddRule(IRuleInterface rule)
         {
-            string result = string.Empty;
+            rules.Add(rule);
+        }
 
-            if (number % 3 == 0 && number % 5 == 0)
+        public string GetStringFromNumber(int number)
+        {
+            foreach (IRuleInterface rule in rules)
             {
-                result = "Fizzbuzz";
+                if (rule.MatchesRule(number))
+                {
+                    return rule.GetFizzBuzzString();
+                }
             }
-            else if (number % 3 == 0)
-            {
-                result = "Fizz";
-            }
-            else if (number % 5 == 0)
-            {
-                result = "Buzz";
-            }
-            else
-            {
-                result = number.ToString();
-            }
-
-            return result;
+            return number.ToString();
         }
     }
 }
