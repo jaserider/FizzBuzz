@@ -13,9 +13,11 @@ namespace FizzBuzzConsole
             fizzBuzz.AddRule(new FizzRule());
             fizzBuzz.AddRule(new BuzzRule());
 
-            for (int count = 1; count <= 100; count++)
+            List<Tuple<string, string>> outputList = fizzBuzz.GenerateList(100);
+
+            foreach (Tuple<string, string> item in outputList)
             {
-                Console.WriteLine(count + " = " + fizzBuzz.GetStringFromNumber(count));
+                Console.WriteLine(item.Item1 + " = " + item.Item2);
             }
             Console.ReadKey();
         }
